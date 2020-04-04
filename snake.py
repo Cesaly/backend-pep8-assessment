@@ -50,15 +50,11 @@ while key != 27:  # While Esc key is not pressed
     # Calculates the new coordinates of the
     # head of the snake. NOTE: len(snake) increases.
     # This is taken care of later at [1].
-    down = (key == KEY_DOWN)
-    up = (key == KEY_UP)
-    right = (key == KEY_RIGHT)
-    left = (key == KEY_LEFT)
-    zero = (snake[0][0])
-    one = (snake[0][1])
-    L_side = (zero + (down and 1) + (up and -1))
-    R_side = (one + (left and -1) + (right and 1))
-    snake.insert(0, [L_side, R_side])
+    snake.insert(0, [snake[0][0] +
+                     (key == KEY_DOWN and 1) +
+                     (key == KEY_UP and -1), snake[0][1] +
+                     (key == KEY_LEFT and -1) +
+                     (key == KEY_RIGHT and 1)])
 
     # If snake crosses the boundaries, make it enter from the other side
     if snake[0][0] == 0:
